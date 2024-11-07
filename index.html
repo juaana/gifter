@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Gifter</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row d-flex align-center justify-content-center">
+            <h1>Gifter</h1>
+        </div>
+        <div class="row ">
+            <div class="col">
+                <div class="card">
+                    <img id="product-image-0" src="" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title" id="product-title-0"></h5>
+                        <p class="card-text" id="product-price-0">$</p>
+                        <a id="product-link-0" href="#" class="btn btn-primary">Ver más</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" >
+                    <img id="product-image-1" src="" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title" id="product-title-1"></h5>
+                        <p class="card-text" id="product-price-1">$</p>
+                        <a id="product-link-1" href="#" class="btn btn-primary">Ver más</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" >
+                    <img id="product-image-2" src="" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title" id="product-title-2"></h5>
+                        <p class="card-text" id="product-price-2">$</p>
+                        <a id="product-link-2" href="#" class="btn btn-primary">Ver más</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" >
+                    <img id="product-image-3" src="" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title" id="product-title-3"></h5>
+                        <p class="card-text" id="product-price-3">$</p>
+                        <a id="product-link-3" href="#" class="btn btn-primary">Ver más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cargar el archivo JSON y actualizar el contenido de la página
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach((element, index) => {
+                    // Usamos el índice para asignar los datos a cada producto
+                    document.getElementById(`product-title-${index}`).textContent = element.title;
+                    document.getElementById(`product-image-${index}`).src = element.image;
+                    document.getElementById(`product-price-${index}`).textContent = `$${element.price}`;
+                    document.getElementById(`product-link-${index}`).href = element.rel[0];
+                });
+            })
+            .catch(error => console.error('Error al cargar el JSON:', error));
+    </script>
+</body>
+</html>
